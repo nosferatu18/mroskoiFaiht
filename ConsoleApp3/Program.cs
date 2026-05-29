@@ -28,7 +28,7 @@ namespace ConsoleApp3
         public bool Hit()
         {
             Hits++;
-            return Hits == Length;
+            return Hits == Length;//вернет труу если ппопали вр все палубы
         }
 
         public string GetShipType()
@@ -42,9 +42,9 @@ namespace ConsoleApp3
         }
     }
 
-    class GameField
+    class GameField//игровое поле
     {
-        public int Size = 10;
+        public int Size = 10;//размер сетки 
         private Ship[,] grid;
         private Ship[] ships;
         private int shipCount;
@@ -78,8 +78,8 @@ namespace ConsoleApp3
             {
                 int x = ship.StartX;
                 int y = ship.StartY;
-                if (ship.IsHorizontal) y = ship.StartY + i;
-                else x = ship.StartX + i;
+                if (ship.IsHorizontal) y = ship.StartY + i; // вправо считаем клетки
+                else x = ship.StartX + i; // вниз считаем 
 
                 grid[x, y] = ship;
             }
@@ -89,7 +89,7 @@ namespace ConsoleApp3
             return true;
         }
 
-        public bool ReceiveShot(int x, int y)
+        public bool ReceiveShot(int x, int y) // выстрелы 
         {
             x--; y--;
 
@@ -143,12 +143,12 @@ namespace ConsoleApp3
                 for (int j = 0; j < Size; j++)
                 {
                     char c = '~';
-                    Ship ship = grid[i, j];
+                    Ship ship = grid[i, j];// достаем корабль из клетки
 
-                    if (ship != null)
+                    if (ship != null) 
                     {
                         bool isHit = false;
-                        for (int k = 0; k < ship.Hits; k++)
+                        for (int k = 0; k < ship.Hits; k++) // скок раз попали
                         {
                             int checkX = ship.StartX;
                             int checkY = ship.StartY;
@@ -200,7 +200,7 @@ namespace ConsoleApp3
                 Console.WriteLine("МОРСКОЙ БОЙ\n");
                 field.PrintField(true);
 
-                Console.Write("Выстрел " + (shots + 1) + ". Введите X Y: ");
+                Console.Write("Выстрел " + (shots + 1) + ". Введите X Y: ");//dbdjn
                 string[] input = Console.ReadLine().Split(' ');
 
                 int x, y;
